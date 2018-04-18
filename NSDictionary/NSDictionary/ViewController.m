@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     // Create NSDictionary using literal declaration.
     
@@ -53,7 +53,8 @@
     [sortDescriptor release];
     
     NSArray *sortKeys = [allKeys sortedArrayUsingDescriptors:sorted];
-    
+    [sorted retain];
+    [sorted release];
     
     for (NSString* key in sortKeys) {
         NSLog(@"%@ - %@",key, mutableDict[key]);
@@ -68,6 +69,8 @@
     [sortDescriptor2 release];
     
     NSArray *sortKeys2 = [allKeys sortedArrayUsingDescriptors:sorted2];
+    [sorted2 retain];
+    [sorted2 release];
     
     for (NSString* key in sortKeys2) {
         NSLog(@"%@ - %@",key, mutableDict[key]);
@@ -88,7 +91,7 @@
             NSLog(@"Yes");
         }
     }
-    
+    [pool release];
 }
 
 
